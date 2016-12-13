@@ -1,0 +1,47 @@
+ties
+See the ties.pl file for the problem description.
+
+This accounts for my (Dr. Fenwick's) thinking as I tried (no pun intended) to
+solve this.
+
+-----------------------------------------------------------------
+ties1
+1. create list of mtr's identifying patterns since cupid is
+   not in constraints.
+2. handle contraints in turn:
+   leprechauns came from someone that was not a daughter
+   etc.
+   NOTE: #5 needs an OR! 
+Didn't solve.
+trace shows funkiness: Xrelative \== daughter; specifically Xrelative is _NOT_
+instantiated to anything.
+
+----------------------------------------------------
+ties2
+Wait "testing" Xrelative until all mtr instantiations?
+still same issue...
+
+----------------------------------------------------
+ties3
+Other "fun" prolog files used "generators" for the domain objects.
+Since Xrelative \== daughter didn't instantiate Xrelative, I need to
+force it to instantiate!!!
+
+Woot! Getting a solution!
+But there are still some _56's in there not being instantiated??
+(Crelative is a singleton!)
+And, constraint #5 isn't quite right (solution has evans getting neither)
+
+--------------------------------------------------------------
+ties4
+force some instantiation of all the parts, and fix the ORing in #5
+
+Better! No extraneous unfilled parts! But now there are duplicated parts.
+--------------------------------------------------------------
+ties5
+make sure no duplicates
+
+YAY!
+
+
+

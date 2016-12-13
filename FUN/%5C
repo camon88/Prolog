@@ -1,0 +1,59 @@
+/*
+    Four guys meet each week on Thursday to play poker.
+    At each meeting they decide what everyone has to bring
+    for the next meeting.
+
+    1. Mr. Dixon will bring cigars.
+    2. Neither Mr. Long, nor Paul, nor Bill Riley will bring pepsi.
+    3. Tim, who is not from the Wyatt family, will bring radio.
+    4. Ben will not bring the chips.
+
+    Find the whole name of each player and what he is supposed to 
+    bring next week. (Note, solution is unique.)
+*/
+
+firstname([paul, bill, tim, ben]).
+lastname([dixon, long, wyatt, riley]).
+
+fullname(FN, LN) :- firstname(X), lastname(Y),
+    member(FN,X), member(LN,Y).
+
+ solve :-
+     firstname(FN), lastname(LN),
+
+       Final = [bringing(first1,dixon,cigars),bringing(first2,last2,pepsi),
+               bringing(tim,last3,radio),bringing(first4,last4,chips)],
+              
+      member(bringing(_, dixon, DixonItem), Final), DixonItem == cigars,
+      member(_, FN),
+      % member((bringing(CF,CL,cigars), Final), 
+      % CL == dixon, CL \== wyatt, CL \== riley, member(CF, FN),
+  
+      
+        member(bringing(_, _,pepsi), Final), 
+        first2 \== paul, first2 \== bill,
+        last2 \== long, last2 \== riley,
+        member(_,FN),
+        member(_,LN),
+        
+  
+        member(bringing(tim,_,TimItem), Final), TimItem == radio, 
+        last3 \== wyatt, last3 \== dixon,
+        member(_,LN), 
+        
+  
+       member(bringing(_,_,chips), Final),
+         
+       first4 \== ben,
+       member(_, FN), 
+       member(_, LN).
+  
+       
+
+   prettyprint(first1, last1, first2, last2, first3, last3, first4, last4), nl.
+  
+   prettyprint(first1, last1, first2, last2, first3, last3, first4, last4) :-
+    write('Cigar: '), write(first1), write(' '), write(last2), nl,
+    write('Pepsi: '), write(first2), write(' '), write(last2), nl,
+    write('Radio: '), write(first3), write(' '), write(last3), nl,
+    write('Chips: '), write(first4), write(' '), write(last4), nl.
